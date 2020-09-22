@@ -11,6 +11,7 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 /**
  *
@@ -29,18 +30,24 @@ public class login extends HttpServlet {
      */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet login</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet login at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
+        String uname = request.getParameter("uname");
+        String pw = request.getParameter("pw");
+        
+        User_db obj = new User_db();
+        int check=obj.check_login(uname, pw);
+        
+        if(check!=0)
+        {
+        HttpSession session = request.getSession();
+        session.setAttribute("user", check);
+        //PrintWriter out = response.getWriter();
+        //out.println(check);
+        response.sendRedirect("member.jsp");
+        }
+        
+        else
+        {
+            response.sendRedirect("login_error.jsp");
         }
     }
 
