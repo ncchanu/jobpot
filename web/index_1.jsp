@@ -1,8 +1,3 @@
-<%-- 
-    Document   : index_1
-    Created on : Sep 22, 2020, 11:30:41 PM
-    Author     : Awantha
---%>
 
 <%@page import="java.sql.ResultSet"%>
 <%@page import="java.sql.DriverManager"%>

@@ -1,8 +1,3 @@
-<%-- 
-    Document   : about
-    Created on : Sep 22, 2020, 11:27:06 PM
-    Author     : Awantha
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
