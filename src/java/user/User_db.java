@@ -44,7 +44,27 @@ public class User_db {
             Logger.getLogger(User_db.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    
+    int check_login(String uname, String pw)
+    {
+        connectToDB();
+        String qry="SELECT * FROM user WHERE uname='"+uname+"' ";
+        int check=0;
+        //List data = new ArrayList();
+        
+        try {
+            ResultSet rs = st.executeQuery(qry);
+            while(rs.next())
+            {
+                if(rs.getString("pw").equals(pw))
+                {
+                    check=Integer.parseInt(rs.getString("id"));
+                }
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(User_db.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return check;
+    }
     
 }
 
