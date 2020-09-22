@@ -1,49 +1,48 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package servlet_a;
 
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
-/**
- *
- * @author Chanuka
- */
+
 public class add_post extends HttpServlet {
 
-    /**
-     * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
-     * methods.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
-            /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
-            out.println("<html>");
-            out.println("<head>");
-            out.println("<title>Servlet add_post</title>");            
-            out.println("</head>");
-            out.println("<body>");
-            out.println("<h1>Servlet add_post at " + request.getContextPath() + "</h1>");
-            out.println("</body>");
-            out.println("</html>");
-        }
+    
+        String title=request.getParameter("title");
+        String company=request.getParameter("company");
+        String address=request.getParameter("address");
+        String type=request.getParameter("type");
+        String salary=request.getParameter("salary");
+        String description=request.getParameter("description");
+        String email=request.getParameter("email");
+        String closedate=request.getParameter("closedate");
+        
+        bean item = new bean();
+        item.setTitle(title);
+        item.setCompany(company);
+        item.setAddress(address);
+        item.setType(type);
+        item.setSalary(salary);
+        item.setDescription(description);
+        item.setEmail(email);
+        item.setClosedate(closedate);
+        HttpSession session=request.getSession();  
+        int user=(int) session.getAttribute("user");
+        
+        add_db indb = new add_db(item);
+        indb.addDb(user);
+        
+        response.sendRedirect("member.jsp");
+ 
+        
     }
-
+    
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
     /**
      * Handles the HTTP <code>GET</code> method.
