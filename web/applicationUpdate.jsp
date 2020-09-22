@@ -1,9 +1,3 @@
-<%-- 
-    Document   : applicationUpdate
-    Created on : Sep 21, 2020, 9:11:58 PM
-    Author     : Chanuka
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
