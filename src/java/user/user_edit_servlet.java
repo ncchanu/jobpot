@@ -6,32 +6,25 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 
-public class user_servlet extends HttpServlet {
+public class user_edit_servlet extends HttpServlet {
 
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
         String name = request.getParameter("name");
         String nic = request.getParameter("nic");
         String email = request.getParameter("email");
         String tel = request.getParameter("tel");
         String uname = request.getParameter("uname");
         String pw = request.getParameter("pw");
+        String user = request.getParameter("user");
         
         User_db obj = new User_db();
-        obj.addUser(name,nic,email,tel,uname,pw);
+        obj.editUser(name, nic, email, tel, uname, pw, user);
         
-        
-        HttpSession session = request.getSession();
-        session.setAttribute("name", name);
-        session.setAttribute("uname", uname);
-        
-        response.sendRedirect("login_success.jsp");
-
+        response.sendRedirect("edit_profile.jsp");
         
     }
 
