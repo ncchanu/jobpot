@@ -1,10 +1,12 @@
 package index;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 public class index_servlet extends HttpServlet {
 
@@ -14,6 +16,16 @@ public class index_servlet extends HttpServlet {
         String type_s = request.getParameter("type_s");
         String title_s = request.getParameter("title_s");
         String company_s = request.getParameter("company_s");
+        
+         bean_index b = new bean_index();
+        b.setCompany_s(company_s);
+        b.setTitle_s(title_s);
+        b.setType_s(type_s);
+        
+        HttpSession session=request.getSession();
+        session.setAttribute("bean_obj", b);
+        
+        response.sendRedirect("index_1.jsp");
         
     }
 
